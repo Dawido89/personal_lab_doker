@@ -47,3 +47,7 @@ Output saved to /app/data/131.226.217.151_20240321.txt
 Output saved to /app/data/sbx-nxos-mgmt.cisco.com_20240321.txt
 Failed to connect or execute command on 8.8.8.8: [Errno None] Unable to connect to port 22 on 8.8.8.8
 ######### Run end: 10:28 ########
+######### Script Start: 2024-03-21 10:55 ########
+Output saved to /app/data/131.226.217.151_20240321.txt
+Output saved to /app/data/sbx-nxos-mgmt.cisco.com_20240321.txt
+######### Run end: 10:55 ########
