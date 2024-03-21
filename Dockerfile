@@ -2,6 +2,8 @@
 # FROM docker.io/briantilburgs/aci-sdk:5.1.3e
 FROM docker.io/briantilburgs/aci-sdk:5.2.8e-alpine2
 
+#MAINTAINER Dawid Sandberg <dawidsandberg@gmail.com>
+
 # Install & upgrade PIP and Setuptools
 # prepared in image above
 # RUN python3 -m pip install --upgrade pip && \
