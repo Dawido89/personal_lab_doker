@@ -73,7 +73,7 @@ def get_switch_output(switch):
 def main():
     start_logging()  # Start logging
     switches = []
-    with open('switches', 'r') as file:
+    with open(os.getenv('SWITCH_LIST'), 'r') as file:
         switches = file.read().splitlines()
 
     # Execute get_switch_output function in parallel
