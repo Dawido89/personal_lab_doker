@@ -59,3 +59,7 @@ Output saved to /app/data/sbx-nxos-mgmt.cisco.com_20240321.txt
 Output saved to /app/data/131.226.217.151_20240321.txt
 Output saved to /app/data/sbx-nxos-mgmt.cisco.com_20240321.txt
 ######### Run end: 11:08 ########
+######### Script Start: 2024-03-21 12:08 ########
+Output saved to /app/data/131.226.217.151_20240321.txt
+Output saved to /app/data/sbx-nxos-mgmt.cisco.com_20240321.txt
+######### Run end: 12:08 ########
