@@ -1,6 +1,6 @@
 FROM python:3.7-slim
 
-MAINTAINER Dawid Sandberg <dawidsandberg@gmail.com>
+LABEL Dawid Sandberg <dawidsandberg@gmail.com>
 
 # set the working directory in the container to /app
 WORKDIR /app
