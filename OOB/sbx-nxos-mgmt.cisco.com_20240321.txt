@@ -1,0 +1,1497 @@
+ABC
+term len 0
+Cisco NX-OS Software
+Copyright (c) 2002-2023, Cisco Systems, Inc. All rights reserved.
+Nexus 9000v software ("Nexus 9000v Software") and related documentation,
+files or other reference materials ("Documentation") are
+the proprietary property and confidential information of Cisco
+Systems, Inc. ("Cisco") and are protected, without limitation,
+pursuant to United States and International copyright and trademark
+laws in the applicable jurisdiction which provide civil and criminal
+penalties for copying or distribution without Cisco's authorization.
+
+Any use or disclosure, in whole or in part, of the Nexus 9000v Software
+or Documentation to any third party for any purposes is expressly
+prohibited except as otherwise authorized by Cisco in writing.
+The copyrights to certain works contained herein are owned by other
+third parties and are used and distributed under license. Some parts
+of this software may be covered under the GNU Public License or the
+GNU Lesser General Public License. A copy of each such license is
+available at
+http://www.gnu.org/licenses/gpl.html and
+http://www.gnu.org/licenses/lgpl.html
+***************************************************************************
+*  Nexus 9000v is strictly limited to use for evaluation, demonstration   *
+*  and NX-OS education. Any use or disclosure, in whole or in part of     *
+*  the Nexus 9000v Software or Documentation to any third party for any   *
+*  purposes is expressly prohibited except as otherwise authorized by     *
+*  Cisco in writing.                                                      *
+***************************************************************************
+Nuthish# term len 0
+Nuthish# show run
+
+!Command: show running-config
+!Running configuration last done at: Wed Mar 20 14:13:30 2024
+!Time: Thu Mar 21 07:22:36 2024
+
+version 10.3(3) Bios:version  
+hostname Nuthish
+policy-map type network-qos test
+  class type network-qos class-default
+policy-map type network-qos jumbo
+  class type network-qos class-default
+    mtu 9192
+install feature-set mpls
+install feature-set virtualization
+vdc Nuthish id 1
+  allow feature-set virtualization
+  allow feature-set mpls
+  limit-resource vlan minimum 16 maximum 4094
+  limit-resource vrf minimum 2 maximum 4096
+  limit-resource port-channel minimum 0 maximum 511
+  limit-resource m4route-mem minimum 58 maximum 58
+  limit-resource m6route-mem minimum 8 maximum 8
+feature-set mpls
+feature-set virtualization
+
+feature nxapi
+feature bash-shell
+feature scp-server
+feature sftp-server
+feature vrrp
+feature tacacs+
+cfs eth distribute
+feature scheduler
+feature ospf
+feature bgp
+feature pim
+feature eigrp
+feature rip
+feature fabric forwarding
+feature netconf
+feature restconf
+feature grpc
+feature openconfig
+feature udld
+feature interface-vlan
+feature hsrp
+feature lacp
+feature dhcp
+feature vpc
+feature lldp
+feature vtp
+feature bfd
+clock timezone SGP 8 0
+clock protocol none vdc 1
+feature sla sender
+feature nv overlay
+feature telemetry
+feature app-hosting
+feature container-tracker
+
+archive
+  path bootflash:myconfig
+  time-period 0
+  maximum 14
+  write-memory
+
+role name namanya
+role name read-only
+  rule 1 permit command show running-config
+no password strength-check
+username admin password 5 $5$DIJBGN$F3tmpzjJujYKVee6rZdPaI2KKMi9bTB2nOXpO6LyzL2  role network-admin
+username admin role priv-15
+username user1 password 5 $5$AGMHHC$7PfZeOhfrfXpSk41ySHZScuP0pnBdECXDvcBj23mwe.  role network-operator
+username user1 passphrase  lifetime 99999 warntime 14 gracetime 3
+username baykar password 5 $5$HJIBKC$fguFY84O7CHiuBUI0HmWsPQznvy651O1KUyVGpyRgj2  role network-operator
+username baykar passphrase  lifetime 99999 warntime 14 gracetime 3
+username cisco password 5 $5$JLIPNF$OSmYvhtw4qYXUuO1MWvT6wSYLEeDWFaReC4.ZvhYXFC  role network-operator
+username cisco passphrase  lifetime 99999 warntime 14 gracetime 3
+username bisto password 5 $5$JPBJIB$C4Fp7edKaYHPLiTovlhHDUmMm2kd6J5TAhOBxuWkI20  role network-operator
+username bisto passphrase  lifetime 99999 warntime 14 gracetime 3
+username tacuser password 5 $5$FDMIIF$GZTH1iq5ahBEojYTkhOdks7e2SLh8yjUY0dSJV8E1w6 expire 2024-01-20 role network-admin
+username tacuser passphrase  lifetime 99999 warntime 14 gracetime 3
+username ansible password 5 $5$GGICMM$pFP2mOb6fu0JbtzxQ216fynmsr8m7vdwjPOnsIB1P57  role network-operator
+username ansible passphrase  lifetime 99999 warntime 14 gracetime 3
+username USER password 5 !  role network-operator
+username USER passphrase  lifetime 99999 warntime 14 gracetime 3
+username CTESTSS password 5 $1$nqM1njqh$pxjTmv2nIc3u42WFzZuLb1  role network-admin
+username CTESTSS passphrase  lifetime 99999 warntime 14 gracetime 3
+username test password 5 $5$HFBLJC$4KWpOyY3im0.az0lRUl6CSbwP/fzfzUJ2I3CgHHUDp9  role network-admin
+username test role priv-15
+username test passphrase  lifetime 99999 warntime 14 gracetime 3
+username Test1 password 5 $1$JCWq8B0i$H799hZkaQKzlbjNM0gXmV0  role network-admin
+username Test1 passphrase  lifetime 99999 warntime 14 gracetime 3
+username test1 password 5 $1$rVA5CoVU$E9Y/yxL07Egj/pnBiW2HL/  role network-admin
+username test1 passphrase  lifetime 99999 warntime 14 gracetime 3
+username cms password 5 $5$CPLFDH$6c7pFvxgsRrAIQgibaAbaoKDyMieLHcu6rJPaRq5VZB  role priv-15
+username cms passphrase  lifetime 99999 warntime 14 gracetime 3
+username testansb password 5 !  role network-operator
+username testansb passphrase  lifetime 99999 warntime 14 gracetime 3
+username lab123 password 5 $5$PDPPOL$HxM8Qg.0pBEr9J40YYnwenBpPBO0cVj6A/yn7xoZ.L1  role network-admin
+username lab123 passphrase  lifetime 99999 warntime 14 gracetime 3
+username lab123netbox password 5 $5$GEJOFH$51wl6MmUeGtk8/q4KBv.x4.sMVad5FrRj5irHC/J9S3  role network-admin
+username lab123netbox passphrase  lifetime 99999 warntime 14 gracetime 3
+username temp_user password 5 $5$FMOLKH$hieNJywySbpCTDQ1jJWA/gDLM9oSBvVLOMLaNhbR8S4 expire 2030-07-30 role network-operator
+username temp_user passphrase  lifetime 99999 warntime 14 gracetime 3
+username admin1 password 5 $5$FHGMNL$fJqF2LVE8veBfItgZJMW8XVFdu8bRafixj2ixoLmte4  role network-operator
+username admin1 role read-only
+username admin1 passphrase  lifetime 99999 warntime 14 gracetime 3
+ssh key rsa 2048 
+
+banner motd @
+"Hello there! Hoping you are having a great day
+... Welcome to '$(hostname)',
+ your favorite CISCO.NXOS.NXOS Sandbox"
+@
+
+
+banner exec ^ABC^
+
+userpassphrase min-length 15 max-length 127 
+
+userpassphrase default-lifetime 90 
+
+no ip domain-lookup
+ip domain-name nince.lab
+ip name-server 1.1.1.1 8.8.8.8
+ip host ddd 10.227.105.20
+ip host eee 172.22.175.96
+ip host iii 10.120.242.68
+tacacs-server key 7 "xsghttvh32201n"
+tacacs-server host 88.8.95.93 
+tacacs-server host 88.8.95.94 
+tacacs-server host ddd key 7 "ABCD" timeout 10 
+tacacs-server host eee key 7 "ABCD" timeout 10 
+tacacs-server host iii key 7 "ABCD" timeout 10 
+aaa group server tacacs+ ISE_TACACS_REG 
+    server ddd 
+    server eee 
+    server iii 
+    deadtime 10
+aaa group server tacacs+ tacacs 
+radius-server host 172.16.1.12 key 7 "VwritosWsgsziGio" authentication accounting 
+radius-server host 172.16.1.13 key 7 "VwritosWsgsziGio" authentication accounting 
+radius-server host 10.10.10.11 key 7 "wawygvvhanvzs1" authentication accounting 
+aaa group server radius AAA-Radius-Group 
+    server 172.16.1.12 
+    server 172.16.1.13 
+    use-vrf management
+aaa group server radius TEST 
+aaa group server radius Test 
+    server 10.10.10.11 
+crypto key generate rsa label mytrustpoint exportable modulus 2048
+crypto key generate rsa label gnmicert exportable modulus 2048
+crypto ca trustpoint mytrustpoint 
+     rsakeypair mytrustpoint 
+     revocation-check  crl 
+crypto ca trustpoint my_client_trustpoint 
+     revocation-check  crl 
+crypto ca trustpoint gnmicert 
+     rsakeypair gnmicert 
+     revocation-check  crl 
+object-group ip address connected_route
+  10 host 182.162.107.2 
+  20 host 182.162.108.2 
+  30 host 182.162.107.1 
+  40 host 182.162.108.1 
+  50 host 110.45.171.66 
+  60 host 110.45.171.65 
+  70 host 110.45.171.98 
+  80 host 110.45.171.97 
+  90 host 182.162.74.2 
+  100 host 110.45.197.2 
+  110 host 182.162.74.1 
+  120 host 110.45.197.1 
+  130 host 172.30.104.203 
+  140 host 61.111.33.2 
+  150 host 61.111.33.34 
+  160 host 61.111.33.66 
+  170 host 61.111.33.98 
+  180 host 61.111.33.10 
+  190 host 61.111.33.42 
+  200 host 61.111.33.70 
+  210 host 61.111.33.110 
+  220 host 182.162.107.3 
+  230 host 182.162.108.3 
+  240 host 110.45.171.67 
+  250 host 110.45.171.99 
+  260 host 182.162.74.3 
+  270 host 110.45.197.3 
+object-group ip address snmp_server
+  10 host 61.111.52.60 
+  20 host 211.38.137.33 
+  30 host 110.45.166.125 
+  40 203.248.244.128/25 
+  50 121.254.248.16/28 
+  60 211.233.23.0/24 
+  70 61.34.79.192/26 
+  80 host 110.45.196.97 
+  90 host 164.124.106.117 
+  100 host 121.254.252.68 
+  110 host 203.248.244.166 
+  120 host 203.248.244.171 
+  130 host 211.233.86.245 
+  140 host 211.233.86.252 
+  150 host 211.233.86.253 
+  160 host 222.231.25.153 
+ip access-list 99
+  10 permit udp 10.23.60.59/32 172.30.176.49/32 eq snmp log 
+  20 permit udp 10.23.60.31/32 172.30.176.49/32 eq snmp log 
+  30 permit udp 10.23.60.30/32 172.30.176.49/32 eq snmp log 
+  40 permit udp 10.23.68.25/32 172.30.176.49/32 eq snmp log 
+  50 permit udp 10.23.68.24/32 172.30.176.49/32 eq snmp log 
+  60 permit udp 10.23.68.29/32 172.30.176.49/32 eq snmp log 
+  70 permit udp 10.23.60.110/32 172.30.176.49/32 eq snmp log 
+  80 permit udp 10.23.35.101/32 172.30.176.49/32 eq snmp log 
+  90 permit udp 10.23.68.59/32 172.30.176.49/32 eq snmp log 
+  100 permit udp 10.23.60.73/32 172.30.176.49/32 eq snmp log 
+  110 permit udp 10.22.71.49/32 172.30.176.49/32 eq snmp log 
+  120 permit udp 10.24.156.28/32 172.30.176.49/32 eq snmp log 
+  130 permit udp 10.24.156.29/32 172.30.176.49/32 eq snmp log 
+  140 permit udp 10.24.142.61/32 172.30.176.49/32 eq snmp log 
+  150 permit udp 10.24.142.59/32 172.30.176.49/32 eq snmp log 
+  160 permit udp 10.24.156.57/32 172.30.176.49/32 eq snmp log 
+  170 permit udp 10.23.55.149/32 172.30.176.49/32 eq snmp log 
+  180 permit udp 10.22.224.44/32 172.30.176.49/32 eq snmp log 
+  190 permit udp 10.22.224.36/32 172.30.176.49/32 eq snmp log 
+  200 permit udp 10.22.224.39/32 172.30.176.49/32 eq snmp log 
+  210 permit udp 10.22.224.27/32 172.30.176.49/32 eq snmp log 
+  220 permit udp 10.24.125.157/32 172.30.176.49/32 eq snmp log 
+  230 permit udp 10.24.125.154/32 172.30.176.49/32 eq snmp log 
+  240 permit ip 10.23.60.59/32 any 
+  250 permit ip 10.23.60.31/32 any 
+  260 permit ip 10.23.60.30/32 any 
+  270 permit ip 10.23.68.25/32 any 
+  280 permit ip 10.23.68.24/32 any 
+  290 permit ip 10.23.68.29/32 any 
+  300 permit ip 10.23.60.110/32 any 
+  310 permit ip 10.23.35.101/32 any 
+  320 permit ip 10.23.68.59/32 any 
+  330 permit ip 10.23.60.73/32 any 
+  340 permit ip 10.22.71.49/32 any 
+  350 permit ip 10.24.156.28/32 any 
+  360 permit ip 10.24.156.29/32 any 
+  370 permit ip 10.24.142.61/32 any 
+  380 permit ip 10.24.142.59/32 any 
+  390 permit ip 10.24.156.57/32 any 
+  400 permit ip 10.23.55.149/32 any 
+  410 permit ip 10.22.224.44/32 any 
+  420 permit ip 10.22.224.36/32 any 
+  430 permit ip 10.22.224.39/32 any 
+  440 permit ip 10.22.224.27/32 any 
+  450 permit ip 10.24.125.157/32 any 
+  460 permit ip 10.24.125.154/32 any 
+ip access-list ACL_TO_CUBRO
+  statistics per-entry
+ip access-list AutoQos-4.0-wlan-Acl-Bulk-Data
+  10 permit tcp any any eq 22 
+  20 permit tcp any any eq 465 
+  30 permit tcp any any eq 143 
+  40 permit tcp any any eq 993 
+  50 permit tcp any any eq 995 
+  60 permit tcp any any eq 1914 
+  70 permit tcp any any eq ftp 
+  80 permit tcp any any eq ftp-data 
+  90 permit tcp any any eq smtp 
+  100 permit tcp any any eq pop3 
+ip access-list FUCK
+  10 permit ip any any 
+ip access-list IPv4-ACL
+  10 deny tcp any 198.51.100.0 0.0.0.255 
+  20 permit tcp any any 
+ip access-list Infrastructure-ACL
+  10 permit tcp any any eq bgp 
+  20 permit udp 10.32.0.0 0.0.255.255 192.168.21.2/32 eq snmp 
+  30 permit udp 10.32.0.0 0.0.255.255 192.168.21.3/32 eq snmp 
+ip access-list VLAN-TEST
+  120 permit ip any 10.10.140.8/32 
+  125 permit ip any 10.10.140.32/32 
+  130 permit ip any 10.10.140.69/32 
+  135 permit ip any 10.10.145.0/24 
+  140 permit ip any 10.10.218.0/24 
+  145 permit ip any 10.10.219.0/24 
+ip access-list VLAN41-IN
+  5 permit ip any 10.157.35.0/24 
+  10 permit ip any 10.247.25.0/24 
+  15 permit ip any 10.10.204.0/23 
+  20 permit ip any 10.10.206.0/24 
+  25 permit ip any 10.247.5.0/24 
+  30 permit ip any 10.247.41.0/24 
+  35 permit ip any 10.247.40.0/24 
+  40 permit ip any 10.247.50.0/24 
+  45 permit ip any 10.247.55.0/24 
+  50 permit ip any 10.247.61.0/24 
+  55 permit ip any 10.247.73.0/24 
+  60 permit ip any 10.157.41.0/24 
+  65 permit ip any 224.0.0.0/8 
+  70 permit ip any 10.246.21.0/24 
+  75 permit ip any 225.0.0.64/32 
+  80 permit ip any 239.193.0.0/24 
+  90 permit ip any 239.255.255.250/32 
+  100 permit ip any 10.171.33.0/24 
+  105 permit ip any 255.255.255.255/32 
+  115 permit icmp any any echo-reply 
+  120 deny ip any 10.0.0.0/8 
+  125 deny ip any 172.16.0.0/12 
+  130 deny ip any 192.168.0.0/16 
+  135 permit ip any any 
+ip access-list VLAN6-IN
+  7 permit udp any any eq domain 
+  8 permit udp any eq domain any 
+  9 permit tcp any any eq domain 
+  10 permit tcp any eq domain any 
+  11 permit udp any eq ntp any 
+  12 permit udp any any eq ntp 
+  13 permit tcp any any eq 502 
+  14 permit udp any any eq snmp 
+  15 permit ip any 10.10.204.0/23 
+  20 permit ip any 10.10.206.0/24 
+  30 permit ip any 10.247.5.0/24 
+  35 permit ip any 10.247.6.0/24 
+  105 permit icmp any any echo-reply 
+  115 permit udp any eq snmp any 
+ip access-list block_port_open
+  statistics per-entry
+  10 permit udp addrgroup snmp_server addrgroup connected_route eq snmp 
+  20 deny udp any addrgroup connected_route eq snmp 
+  30 permit ip any any 
+ip access-list consoe_machine
+  10 permit ip 10.1.1.1/32 any 
+  20 permit ip 10.1.1.10/32 any 
+ip access-list ipn
+  10 permit icmp 10.0.0.1/32 10.0.0.5/32 
+ip access-list sccm
+  10 permit ip any 10.252.248.36/32 
+ip access-list standard
+ip access-list standard-test
+  10 permit ip 10.0.0.0/8 10.0.0.0/8 
+ip access-list test_acl
+  10 permit ip 0.0.0.0 255.255.248.255 any 
+ipv6 dhcp guard policy NO-IPv6-DHCP
+!
+ipv6 snooping policy NO
+!
+ipv6 snooping policy SNOOPING
+!
+ipv6 snooping policy NO-IPv6-DHCP
+!
+class-map type qos match-any EMAIL
+  match protocol isis
+class-map type qos match-all zulqadar_cp
+  match access-group name sccm
+policy-map type qos DEMO
+  class EMAIL
+    police cir percent 10 bc 200 ms conform transmit violate drop
+policy-map type qos zulqadar_pm
+  class zulqadar_cp
+    police cir 100 mbps bc 200 ms conform transmit violate drop
+system qos
+  service-policy type network-qos test
+track 1 ip sla 1 reachability
+track 2 ip sla 2 reachability
+track 123 ip sla 123 reachability
+copp profile strict
+vtp domain PKBPNB
+bfd echo-interface loopback305
+snmp ifmib ifalias long
+snmp-server contact info@domain.com
+snmp-server location Virtual
+snmp-server user cms priv-15 auth md5 216477D5628414D111983055ABAEF60B89EC priv aes-128 057A0CB50F9563F435BD5D5AA9BFF021AE99 localizedV2key
+snmp-server user USER network-operator 
+snmp-server user test priv-15 auth md5 533090A5668F8B813F19EBAD32D2C862D46A priv aes-128 5301D8A5658CD783233EA3B830CDC2548A2F localizedV2key
+snmp-server user test network-admin
+snmp-server user admin network-admin auth md5 055E527C8E561D2B43E1C7A07D869D444C3A priv aes-128 52373413CF85CCBDC57B4F2DE91506F1F881 localizedV2key
+snmp-server user admin priv-15
+snmp-server user bisto network-operator auth md5 3772EA1C042E42160126937CE830B2AE4A34 priv aes-128 5315BA46DBF78CE1F8CF79FA7DE6713B80F8 localizedV2key
+snmp-server user cisco network-operator auth md5 041F6365E7999BD48E795E59CA571C88C283 priv aes-128 2164170B96D893C6DE265115825C4A8BB5F8 localizedV2key
+snmp-server user user1 network-operator auth md5 206E1E58A2D161359369B5E2CB9FEA92874E priv aes-128 3339793A8DE508619154F8AACDD1E5DAC21A localizedV2key
+snmp-server user admin1 network-operator auth md5 481F6E64B0EFD38981640045DE5331C0A6A1 priv aes-128 043B6975F98B9987DF252D40D0555E8BD2C9 localizedV2key
+snmp-server user admin1 read-only
+snmp-server user baykar network-operator auth md5 3742E4107C2EA712816DA07296BE850F929D priv aes-128 177CAB735E76F04ED8708A0B9BEEC05696CC localizedV2key
+snmp-server user lab123 network-admin auth md5 0070CCD1FF4EA6335E58012BBBFD7B1DFE03 priv aes-128 167EDCDFCA389E2C765D7A74E2FD7C00BD0B localizedV2key
+snmp-server user ansible network-operator auth md5 167B2E29A69663925B94F437C4D56AD35A57 priv aes-128 49627572D99C5ED40AC0F105C8F73893006B localizedV2key
+snmp-server user tacuser network-admin auth md5 330989F995C22F2DD1E2DBF27B1F46DEADC3 priv aes-128 0064CBBFC1C963258790BAA868552F8BBDD5 localizedV2key
+snmp-server user temp_user network-operator auth md5 007535F443ABB92CE6BD1B9270182C0C1CF6 priv aes-128 056F77F24A98F9478DA57BD86209253C77AA localizedV2key
+snmp-server user lab123netbox network-admin auth md5 364E9AE05165DD02DC48E63A823545C21B9C priv aes-128 0055D5A1486484439E29FD73D12B35CB4BC2 localizedV2key
+snmp-server host 192.168.1.1 traps version 2c public1
+snmp-server host 192.168.110.25 traps version 2c whatsup
+snmp-server host 1.1.1.1 traps version 3 priv PRIV
+snmp-server host 10.23.68.59 traps version 2c 3Tm0n1t0r!ng
+snmp-server host 10.23.68.24 traps version 2c 3Tm0n1t0r!ng
+snmp-server host 10.23.68.25 traps version 2c 3Tm0n1t0r!ng
+snmp-server host 10.23.68.29 traps version 2c 3Tm0n1t0r!ng
+snmp-server host 10.22.71.49 traps version 2c S3cur1ty@XL
+snmp-server host 10.23.35.101 traps version 2c plannperfcom856
+snmp-server host 10.23.55.147 traps version 2c plannperfcom856
+rmon event 1 log trap public description FATAL(1) owner PMON@FATAL
+rmon event 2 log trap public description CRITICAL(2) owner PMON@CRITICAL
+rmon event 3 log trap public description ERROR(3) owner PMON@ERROR
+rmon event 4 log trap public description WARNING(4) owner PMON@WARNING
+rmon event 5 log trap public description INFORMATION(5) owner PMON@INFO
+snmp-server enable traps config ccmCLIRunningConfigChanged
+snmp-server community private1 group network-admin
+snmp-server community Durham group network-admin
+snmp-server community ChapelHill group network-admin
+snmp-server community public1 group network-operator
+snmp-server community S3cur1ty!!XL group network-operator
+ntp server 2.2.2.2 use-vrf default
+ntp server 10.5.1.1 use-vrf default
+ntp server 10.23.40.252 prefer use-vrf default
+ntp server 10.24.134.234 use-vrf default
+ntp server 132.163.97.5 prefer use-vrf default
+ntp logging
+aaa authentication login default group ISE_TACACS_REG local 
+aaa authentication login console group ISE_TACACS_REG local 
+aaa authorization config-commands default group ISE_TACACS_REG local 
+aaa authorization commands default group ISE_TACACS_REG local 
+aaa authorization config-commands console group ISE_TACACS_REG local 
+aaa authorization commands console group ISE_TACACS_REG local 
+aaa accounting default group ISE_TACACS_REG local 
+system jumbomtu 9192
+no errdisable detect cause link-flap
+errdisable recovery cause link-flap
+errdisable recovery cause udld
+errdisable recovery cause bpduguard
+no errdisable detect cause loopback
+errdisable recovery cause loopback
+errdisable recovery cause storm-control
+errdisable recovery cause security-violation
+errdisable recovery cause psecure-violation
+
+fabric forwarding anycast-gateway-mac 0000.1111.2222
+ip route 0.0.0.0/0 10.1.1.23 1
+ip route 0.0.0.0/0 10.100.1.1 1
+ip pim rp-address 192.168.18.243 group-list 232.0.0.0/8
+ip pim ssm prefix-list PXL_SSM_RANGE
+mac address-table multicast 03bf.0a29.2029 vlan 113 interface Ethernet1/59
+mac address-table multicast 03bf.0a29.2029 vlan 203 interface Ethernet1/32
+vlan 1,12,16,42-43,60,64,69-70,77,82,88-89,98-103,111,122,139,176-184,200,204,224,300,400,500,1569,1989,1999,2110-2118,2811,3500,3912
+vlan 12
+  name lili
+vlan 16
+  name Dmontoya
+vlan 42
+  name ANSIBLE_VLAN
+vlan 43
+  name ANSIBLE_VLAN_43
+vlan 64
+  name Homero83
+vlan 69
+  name sandina22
+vlan 77
+  name paco_villa77
+vlan 82
+  name rsc-ilo
+vlan 88
+  name test-vlan88
+vlan 89
+  shutdown
+  name test-vlan89
+vlan 98
+  name tatanl99
+vlan 99
+  name javier99
+vlan 101
+  name LL_VLAN_DEMO1
+vlan 102
+  name XML
+vlan 103
+  name NXAPI_REST_VLAN
+vlan 139
+  name yisus
+vlan 176
+  name DMZ_Mgt_Telco
+vlan 177
+  name MGMT_Firewall
+vlan 178
+  name DMZ_Mgt_Telco_2
+vlan 179
+  name DMZ_Prod_Telco
+vlan 180
+  name DMZ_ILO_Telco
+vlan 181
+  name DMZ_Prod_NonBil
+vlan 182
+  name DMZ_Prod_NonBil_2
+vlan 183
+  name DMZ_Mgt_NonBil
+vlan 184
+  name DMZ_ILO_NonBil
+vlan 200
+  name hugo
+vlan 204
+  name challenge-204
+vlan 300
+  name wilson
+vlan 400
+  name andina
+vlan 500
+  name diplomado
+vlan 1569
+  name test
+vlan 1989
+  name Python
+vlan 1999
+  name test_rest
+vlan 2110
+  name challenge-201
+vlan 2811
+  name GIMILILI
+vlan 3500
+  name DATACENTER
+
+spanning-tree vlan 1-3967 priority 0
+ip prefix-list ANB_WAN_Corp seq 101 permit 192.168.11.0/24 
+ip prefix-list ANB_WAN_Corp seq 103 permit 192.168.51.0/24 
+ip prefix-list ANB_WAN_IOT seq 101 permit 10.10.2.0/24 
+ip prefix-list ANB_WAN_IOT seq 103 permit 10.10.5.0/24 
+ip prefix-list PXL_SSM_RANGE seq 5 permit 232.0.0.0/8 
+ip prefix-list PXL_SSM_RANGE seq 15 permit 239.0.0.0/8 
+route-map PBR1 permit 10
+  match ip address standard-test 
+  set ip next-hop verify-availability 10.0.0.1 track 1
+route-map TEEST permit 10
+route-map bgp-test permit 10
+route-map internet_access permit 10
+route-map ipn permit 10
+  match ip address ipn 
+route-map test permit 10
+route-map vv permit 1
+route-map vv permit 10
+service dhcp
+ip dhcp relay
+ipv6 dhcp relay
+vrf context AZPRV
+vrf context CONTROL
+  description CONTROL
+  address-family ipv4 unicast
+vrf context LULU
+  address-family ipv4 unicast
+vrf context MPOD-IPN
+  ip pim rp-address 44.1.1.1 group-list 225.0.0.0/15 bidir
+  ip pim rp-address 44.1.1.1 group-list 239.0.0.240/28 bidir
+  ip pim ssm range 232.0.0.0/8
+vrf context MYVRF
+vrf context TENANT
+vrf context TENANT1
+  vni 50000
+  address-family ipv4 unicast
+vrf context VRF1
+  description VRF for Network Segment 1
+vrf context VRF1-Veer
+vrf context VRF1-test
+vrf context VRF10-Prathap
+vrf context VRF1011
+  description My VRF10 Description
+  vni 103910
+vrf context VRF11-Prathap
+vrf context VRF1111
+  description My VRF11 Description222
+  vni 103911
+vrf context VRF133-test
+vrf context VRF1DJ
+  description My VRF1 descriptiondj
+  vni 113901
+vrf context VRF1_sheik
+  description My VRF1 Description
+  vni 303904
+vrf context VRF2
+  description VRF for Network Segment 2
+vrf context VRF2-Veer2
+vrf context VRF2-test
+vrf context VRF20_Veer
+vrf context VRF21_Veer2
+vrf context VRF233-test
+vrf context VRF255-test
+vrf context VRF2_sheik
+  description My VRF2 Description
+  vni 403904
+vrf context VRF3-test
+vrf context VRF355-test
+vrf context VRF455-test
+vrf context VRFLITE_VC_HARMONIC
+  description VRFLITE_VC_HARMONIC
+  ip route 0.0.0.0/0 172.16.200.10 name p2p_OOB_lab
+vrf context XANDAR
+  vni 5000
+  rd auto
+  address-family ipv4 unicast
+vrf context chemi
+  ip route 0.0.0.0/0 Null0
+  ip route 1.2.3.4/32 1.1.1.1 track 123
+  ip mroute 1.2.3.4/32 1.1.1.1
+vrf context ipn
+vrf context keepalives
+vrf context management
+  ip route 0.0.0.0/0 10.10.20.254
+vrf context rsr_servidores
+  ip route 0.0.0.0/0 172.17.254.5
+  ip route 172.16.0.0/16 172.17.254.5
+  ip route 172.17.8.0/23 172.17.254.6 10
+  ip route 172.17.8.0/23 172.17.254.7 track 1
+  ip route 172.17.16.0/24 172.17.254.6 10
+  ip route 172.17.16.0/24 172.17.254.7 track 1
+  ip route 172.17.30.0/24 172.17.254.6 10
+  ip route 172.17.30.0/24 172.17.254.7 track 1
+  ip route 172.17.196.0/25 172.17.254.9
+  ip route 172.17.201.0/24 172.17.254.9
+  ip route 172.17.204.0/24 172.17.254.9
+  ip route 172.17.206.0/23 172.17.254.9
+  ip route 172.17.212.0/24 172.17.254.9
+  ip route 172.17.230.0/24 172.17.254.9
+  ip route 172.17.233.0/24 172.17.254.9
+  ip route 172.17.243.0/24 172.17.254.9
+  ip route 172.20.0.0/16 172.17.254.5
+  ip route 172.23.0.0/16 172.17.254.5
+  ip route 172.25.0.0/16 172.17.254.5
+  ip mroute 172.17.189.0/26 172.17.254.5
+vrf context rsr_vn_sda
+  ip route 0.0.0.0/0 172.17.250.43
+  ip route 1.1.1.1/32 172.17.250.44 10
+  ip route 1.1.1.1/32 172.17.250.45 track 2
+  ip route 172.17.8.0/21 172.17.250.44 10
+  ip route 172.17.8.0/21 172.17.250.45 track 2
+  ip route 172.17.189.0/24 172.17.250.44 10
+  ip route 172.17.189.0/24 172.17.250.45 track 2
+  ip route 172.17.220.0/24 172.17.250.44 10
+  ip route 172.17.220.0/24 172.17.250.45 track 2
+  ip route 172.17.221.0/24 172.17.250.44 10
+  ip route 172.17.221.0/24 172.17.250.45 track 2
+vrf context test
+  ip route 1.1.1.1/32 2.2.2.2
+lldp reinit 1
+port-profile type ethernet Eros
+  state enabled
+port-profile type ethernet SHUTPORT
+  shutdown
+  spanning-tree port type normal
+port-profile type ethernet sHUTPORT
+  state enabled
+vlan configuration 113,203
+  layer-2 multicast lookup mac
+
+nxapi http port 80
+
+
+interface Vlan1
+  no ip redirects
+  no ipv6 redirects
+
+interface Vlan2
+  description TEST_DWDM
+  no shutdown
+
+interface Vlan5
+  no shutdown
+
+interface Vlan8
+  no ip redirects
+  no ipv6 redirects
+
+interface Vlan10
+  description config con python
+  no ip redirects
+  ip address 10.10.10.253/24
+  ip address 172.16.10.153/24 secondary
+
+interface Vlan11
+  description config con python
+  no ip redirects
+  ip address 192.168.11.1/24
+  no ipv6 redirects
+
+interface Vlan12
+  description config con python
+  ip address 192.168.12.1/24
+
+interface Vlan13
+  description config con python
+  ip address 192.168.14.1/24
+
+interface Vlan14
+  description confg con python
+  no shutdown
+  no ip redirects
+  ip address 192.168.90.1/24
+  ipv6 nd managed-config-flag
+  no ipv6 redirects
+
+interface Vlan15
+  no ip redirects
+  no ipv6 redirects
+
+interface Vlan16
+  no shutdown
+  ip address 192.168.89.23/24
+
+interface Vlan19
+  no ip redirects
+  no ipv6 redirects
+
+interface Vlan20
+  no ip redirects
+  no ipv6 redirects
+
+interface Vlan21
+  no ip redirects
+  no ipv6 redirects
+
+interface Vlan25
+  no shutdown
+  ip address 10.222.249.25/24
+
+interface Vlan30
+
+interface Vlan33
+
+interface Vlan42
+  no ip redirects
+  no ipv6 redirects
+
+interface Vlan50
+  ip address 172.16.1.111/24
+
+interface Vlan59
+  description desde Netmiko VSCode
+  no ip redirects
+  no ipv6 redirects
+
+interface Vlan77
+  no shutdown
+  ip address 172.16.1.10/24
+
+interface Vlan88
+  description Configured by Ansible
+  ip address 10.88.88.88/24
+
+interface Vlan89
+  description Configured by Ansible nxos_interfaces
+  ip address 10.100.100.89/24
+
+interface Vlan93
+  no ip redirects
+  no ipv6 redirects
+
+interface Vlan99
+  no shutdown
+  no autostate
+  vrf member LULU
+  no ip redirects
+  ip address 1.1.1.254/24
+  ip address 1.1.1.1/24 secondary use-bia
+  fabric forwarding mode anycast-gateway
+
+interface Vlan100
+  no ip redirects
+  ip address 10.0.0.101/24
+  ip address 20.0.0.1/24 secondary
+  ip address 30.0.0.1/24 secondary
+  ip address 40.0.0.1/24 secondary
+  hsrp version 2
+  hsrp 100 
+    priority 150 forwarding-threshold lower 0 upper 100
+    ip 20.0.0.2 secondary
+    ip 30.0.0.2 secondary
+    ip 40.0.0.2 secondary
+    ip 10.0.0.254
+
+interface Vlan101
+  description prod svi - DEMO PLEASE DON'T TOUCH
+  no shutdown
+  mtu 9192
+  vrf member XANDAR
+  no ip redirects
+  ip address 192.168.23.12/24
+  no ipv6 redirects
+
+interface Vlan102
+  description dev svi - DEMO PLEASE DON'T TOUCH
+  no shutdown
+  mtu 9192
+  vrf member XANDAR
+  no ip redirects
+  ip address 10.2.2.1/24 tag 4082018
+  no ipv6 redirects
+
+interface Vlan103
+  description test svi - DEMO PLEASE DON'T TOUCH
+  no shutdown
+  mtu 9192
+  vrf member XANDAR
+  no ip redirects
+  ip address 10.2.3.1/24 tag 4082018
+  no ipv6 redirects
+
+interface Vlan104
+  description security svi - DEMO PLEASE DON'T TOUCH
+  no shutdown
+  mtu 9192
+  vrf member XANDAR
+  no ip redirects
+  ip address 10.2.4.1/24 tag 4082018
+  no ipv6 redirects
+
+interface Vlan105
+  description iot svi - DEMO PLEASE DON'T TOUCH
+  no ip redirects
+  no ipv6 redirects
+
+interface Vlan110
+  no ip redirects
+  no ipv6 redirects
+
+interface Vlan111
+  description TEST_IFname
+
+interface Vlan112
+  no ip redirects
+  ip address 10.72.240.13/29
+  no ipv6 redirects
+
+interface Vlan113
+  no ip redirects
+  ip address 10.73.148.13/29
+  no ipv6 redirects
+  vrrp 23
+    priority 254
+    address 10.73.148.13 
+
+interface Vlan121
+  no shutdown
+  ip address 10.0.0.1/30
+
+interface Vlan138
+  no shutdown
+  vrf member VRFLITE_VC_HARMONIC
+  no ip redirects
+  ip address 172.16.3.225/29
+  ip address 172.16.3.233/29 secondary
+  vrrp 138
+
+interface Vlan177
+
+interface Vlan199
+  no shutdown
+
+interface Vlan204
+  description challenge-204
+  no shutdown
+  ip address 10.204.204.66/30
+
+interface Vlan293
+  description Made By Terraform
+  mtu 9216
+  bandwidth 1000
+  delay 10
+
+interface Vlan300
+
+interface Vlan846
+  no ip redirects
+  no ipv6 redirects
+
+interface Vlan992
+  no ip redirects
+  ipv6 address 2001:db8::218:baff:fed8:239d/30
+  no ipv6 redirects
+
+interface Vlan2005
+  description szikili bukajal
+  no shutdown
+  mtu 9192
+  vrf member TENANT1
+  no ip redirects
+  ip forward
+  no ipv6 redirects
+
+interface Vlan2110
+  description challenge-201
+  no shutdown
+
+interface Vlan3333
+  description szia
+  no ip redirects
+  ip address 10.1.1.2/29
+  ip address 10.1.1.9/29 secondary
+
+interface Vlan3912
+  description kumalamanasz futyulutusz
+  ip address 1.1.1.1/24
+
+interface port-channel1
+  description ***Connection to PKBPNB-SADMZ01 (172.30.177.11) *** 
+  switchport mode trunk
+  switchport trunk allowed vlan 176-184
+
+interface port-channel10
+  switchport mode trunk
+  spanning-tree guard root
+
+interface port-channel11
+  switchport mode trunk
+  switchport trunk allowed vlan 100-110
+
+interface port-channel20
+  switchport monitor
+
+interface port-channel30
+  switchport mode trunk
+  switchport trunk native vlan 99
+  switchport trunk allowed vlan 99,101
+
+interface port-channel33
+  switchport mode trunk
+  switchport trunk native vlan 138
+  switchport trunk allowed vlan 138-139
+
+interface port-channel100
+  switchport mode trunk
+  switchport trunk allowed vlan 100-105
+  spanning-tree port type edge trunk
+  speed 1000
+
+interface port-channel101
+  description ***Connection to PKBPNB-SADMZ02 (172.30.177.12) *** 
+  switchport mode trunk
+  switchport trunk allowed vlan 176-184
+
+interface port-channel103
+  switchport mode trunk
+
+interface port-channel119
+  switchport access vlan 130
+
+interface port-channel120
+
+interface port-channel153
+  switchport mode trunk
+  switchport trunk allowed vlan 2
+
+interface port-channel161
+  switchport mode trunk
+  spanning-tree port type edge trunk
+
+interface port-channel200
+  switchport mode trunk
+  switchport trunk allowed vlan 100-105
+  spanning-tree port type edge trunk
+  speed 1000
+
+interface port-channel300
+  description ***Connection to PKBPNB-SADMZ01 (172.30.177.11) *** 
+  switchport mode trunk
+  switchport trunk allowed vlan 176-184
+  spanning-tree bpduguard enable
+  storm-control broadcast level 0.01
+  storm-control multicast level 0.01
+
+interface Ethernet1/1
+
+interface Ethernet1/2
+  description Connected to Router
+  shutdown
+  switchport access vlan 204
+  switchport trunk allowed vlan 2-15
+  spanning-tree port type edge
+  switchport mode trunk
+  inherit port-profile Eros
+
+interface Ethernet1/3
+  switchport mode trunk
+  channel-group 103 mode active
+
+interface Ethernet1/4
+  description SLO-BT-DIA
+  shutdown
+  switchport mode trunk
+  switchport access vlan 11
+  spanning-tree port type edge
+
+interface Ethernet1/5
+  description SLO-BT-DIA
+  shutdown
+  switchport mode trunk
+  switchport trunk native vlan 138
+  switchport trunk allowed vlan 138-139
+  channel-group 33 mode active
+
+interface Ethernet1/6
+  switchport mode trunk
+  channel-group 103 mode active
+
+interface Ethernet1/7
+  description DC1-PA52-FW  (INT)
+  no cdp enable
+  switchport mode trunk
+
+interface Ethernet1/8
+  shutdown
+  switchport access vlan 50
+  udld aggressive
+
+interface Ethernet1/9
+  description testowanko
+  no switchport
+  ip address 1.1.1.1/24
+
+interface Ethernet1/10
+  no switchport
+  ip router ospf UNDERLAY area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/11
+  description *** PKBPNB-CGNAT-11 (172.30.176.187) *** 
+  switchport access vlan 176
+  switchport trunk allowed vlan 20
+  spanning-tree bpduguard enable
+  storm-control broadcast level 0.01
+  storm-control multicast level 0.01
+
+interface Ethernet1/12
+  description Test_VOZ_Stack
+  switchport access vlan 176
+  spanning-tree bpduguard enable
+  storm-control broadcast level 0.01
+  storm-control multicast level 0.01
+
+interface Ethernet1/13
+  description Link to esxi-01 port nic 0 for Virtualization Host
+  switchport mode trunk
+  channel-group 10 mode active
+
+interface Ethernet1/14
+  description HR
+  switchport monitor
+  switchport access vlan 12
+  spanning-tree port type edge
+
+interface Ethernet1/15
+  description 1902
+  shutdown
+  switchport monitor
+  switchport access vlan 12
+  spanning-tree port type edge
+
+interface Ethernet1/16
+  description 1902
+  switchport access vlan 12
+
+interface Ethernet1/17
+  description datos
+  switchport access vlan 12
+  spanning-tree port type edge
+
+interface Ethernet1/18
+  description prueba1902
+  switchport mode trunk
+  switchport trunk native vlan 99
+  switchport trunk allowed vlan 99,101
+  logging event port link-status
+  logging event port trunk-status
+  channel-group 30 mode passive
+
+interface Ethernet1/19
+  description prueba1902
+  switchport mode trunk
+  switchport trunk native vlan 99
+  switchport trunk allowed vlan 99,101
+  logging event port link-status
+  logging event port trunk-status
+  channel-group 30 mode passive
+
+interface Ethernet1/20
+  description 1902
+  switchport access vlan 12
+  spanning-tree port type edge
+
+interface Ethernet1/21
+  description 1902
+  switchport access vlan 12
+  spanning-tree port type edge
+
+interface Ethernet1/22
+  description 1902
+  switchport access vlan 12
+  spanning-tree port type edge
+
+interface Ethernet1/23
+  description Link to esxi-03 port nic 2 for Virtualization Host
+  switchport mode trunk
+  switchport trunk allowed vlan 176-184
+
+interface Ethernet1/24
+  description Link to esxi-03 port nic 3 for Virtualization Host
+  switchport mode trunk
+  spanning-tree port type edge
+
+interface Ethernet1/25
+  description Link to esxi-04 port nic 0 for Virtualization Host
+  switchport mode trunk
+  spanning-tree port type edge
+
+interface Ethernet1/26
+  description Link to esxi-04 port nic 1 for Virtualization Host
+  switchport mode trunk
+  spanning-tree port type edge
+
+interface Ethernet1/27
+  description Link to esxi-04 port nic 2 for Virtualization Host
+  switchport mode trunk
+  spanning-tree port type edge
+
+interface Ethernet1/28
+  description Link to esxi-04 port nic 3 for Virtualization Host
+  switchport mode trunk
+  spanning-tree port type edge
+
+interface Ethernet1/29
+  description Link to esxi-05 port nic 0 for Virtualization Host
+  switchport mode trunk
+  spanning-tree port type edge
+
+interface Ethernet1/30
+  description Link to esxi-05 port nic 1 for Virtualization Host
+  switchport mode trunk
+
+interface Ethernet1/31
+  description Link to esxi-05 port nic 2 for Virtualization Host
+  switchport mode trunk
+  switchport access vlan 176
+  spanning-tree port type edge
+  spanning-tree guard root
+  storm-control broadcast level 0.01
+  storm-control multicast level 0.01
+
+interface Ethernet1/32
+  description Link to esxi-05 port nic 3 for Virtualization Host
+  switchport mode trunk
+  spanning-tree port type edge
+
+interface Ethernet1/33
+  description Link to esxi-06 port nic 0 for Virtualization Host
+  switchport mode trunk
+  spanning-tree port type edge
+
+interface Ethernet1/34
+  description Link to esxi-06 port nic 1 for Virtualization Host
+  switchport mode trunk
+  spanning-tree port type edge
+
+interface Ethernet1/35
+  description Link to esxi-06 port nic 2 for Virtualization Host
+  switchport mode trunk
+  spanning-tree port type edge
+
+interface Ethernet1/36
+  description Link to esxi-06 port nic 3 for Virtualization Host
+  switchport mode trunk
+  spanning-tree port type edge
+
+interface Ethernet1/37
+  description Link to esxi-07 port nic 0 for Virtualization Host
+  switchport mode trunk
+  spanning-tree port type edge
+
+interface Ethernet1/38
+  description Link to esxi-07 port nic 1 for Virtualization Host
+  switchport mode trunk
+  spanning-tree port type edge
+
+interface Ethernet1/39
+  description Link to esxi-07 port nic 2 for Virtualization Host
+  switchport mode trunk
+  spanning-tree port type edge
+
+interface Ethernet1/40
+  description Link to esxi-07 port nic 3 for Virtualization Host
+  switchport mode trunk
+
+interface Ethernet1/41
+  description Link to esxi-08 port nic 0 for Virtualization Host
+  switchport mode trunk
+
+interface Ethernet1/42
+  description Link to esxi-08 port nic 1 for Virtualization Host
+  switchport mode trunk
+
+interface Ethernet1/43
+  description Link to esxi-08 port nic 2 for Virtualization Host
+  switchport mode trunk
+
+interface Ethernet1/44
+  description Link to esxi-08 port nic 3 for Virtualization Host
+  switchport mode trunk
+  spanning-tree port type edge
+
+interface Ethernet1/45
+  description Link to db-01 port nic 0 for Database Server
+  switchport access vlan 101
+  switchport trunk allowed vlan 177
+  spanning-tree port type edge
+  spanning-tree bpduguard enable
+  storm-control broadcast level 0.01
+
+interface Ethernet1/46
+  description Link to db-01 port nic 1 for Database Server
+  switchport access vlan 101
+  spanning-tree port type edge
+
+interface Ethernet1/47
+  description Link to db-02 port nic 0 for Database Server
+  switchport access vlan 101
+  spanning-tree port type edge
+
+interface Ethernet1/48
+  description Link to db-02 port nic 1 for Database Server
+  switchport access vlan 101
+  switchport trunk allowed vlan 176
+  spanning-tree port type edge
+  spanning-tree bpduguard enable
+  storm-control broadcast level 0.01
+
+interface Ethernet1/49
+  description Link to db-03 port nic 0 for Database Server
+  switchport access vlan 101
+  spanning-tree port type edge
+
+interface Ethernet1/50
+  description Link to db-03 port nic 1 for Database Server
+  switchport access vlan 101
+  spanning-tree port type edge
+
+interface Ethernet1/51
+  description Link to dev-db-01 port nic 0 for Database Server
+  switchport access vlan 102
+  spanning-tree port type edge
+
+interface Ethernet1/52
+  description Link to dev-db-01 port nic 1 for Database Server
+  switchport access vlan 102
+  spanning-tree port type edge
+
+interface Ethernet1/53
+  description Link to dev-db-02 port nic 0 for Database Server
+  switchport mode trunk
+  switchport trunk allowed vlan 2
+  spanning-tree port type edge
+  channel-group 153 mode active
+
+interface Ethernet1/54
+  description Link to dev-db-02 port nic 1 for Database Server
+  switchport mode trunk
+  switchport trunk allowed vlan 2
+  spanning-tree port type edge
+  channel-group 153 mode active
+
+interface Ethernet1/55
+  description Link to dev-db-03 port nic 0 for Database Server
+  shutdown
+  switchport access vlan 102
+  spanning-tree port type edge
+
+interface Ethernet1/56
+  description Link to dev-db-03 port nic 1 for Database Server
+  switchport access vlan 102
+  spanning-tree port type edge
+
+interface Ethernet1/57
+  description Link to admin-01 port nic 0 for Admin Server
+  switchport access vlan 100
+  spanning-tree port type edge
+
+interface Ethernet1/58
+  description Link to admin-01 port nic 2 for Admin Server
+  switchport access vlan 100
+  spanning-tree port type edge
+
+interface Ethernet1/59
+  description Link to server-01 port nic 0 for App Server
+  switchport access vlan 103
+  spanning-tree port type edge
+
+interface Ethernet1/60
+  description Link to server-01 port nic 1 for App Server
+  switchport access vlan 103
+  spanning-tree port type edge
+
+interface Ethernet1/61
+  description Link to server-02 port nic 0 for App Server
+  switchport mode trunk
+  spanning-tree port type edge
+  channel-group 161 mode active
+
+interface Ethernet1/62
+  description Link to server-02 port nic 1 for App Server
+  switchport mode trunk
+  spanning-tree port type edge
+  channel-group 161 mode active
+
+interface Ethernet1/63
+  description Link to server-03 port nic 0 for App Server
+  switchport access vlan 105
+  spanning-tree port type edge
+
+interface Ethernet1/64
+  description Link to server-03 port nic 1 for App Server
+  lacp rate fast
+  switchport access vlan 105
+  spanning-tree port type edge
+
+interface mgmt0
+  description DO NOT TOUCH CONFIG ON THIS INTERFACE
+  vrf member management
+  ip address 10.10.20.95/24
+
+interface loopback0
+  shutdown
+
+interface loopback1
+
+interface loopback5
+
+interface loopback30
+  description My Learning Lab Loopback_RPRPRPRPRPRPRPRPRPRPRP
+
+interface loopback98
+  description Configured using OpenConfig Model
+  ip address 10.98.98.1/24
+
+interface loopback1001
+  ip address 1.1.1.1/32
+icam monitor scale
+
+cli alias name sir sh ip int br
+line console
+  exec-timeout 10
+  terminal width  511
+line vty
+  session-limit 15
+  exec-timeout 15
+boot nxos bootflash:/nxos64-cs.10.3.3.F.bin 
+router eigrp 10
+router ospf UNDERLAY
+  router-id 1.1.1.1
+router bgp 65535
+  router-id 172.16.0.1
+  timers prefix-peer-timeout 30
+  address-family ipv4 unicast
+    network 172.16.0.0/16
+  neighbor 172.16.0.2
+    remote-as 65535
+  vrf AZPRV
+    neighbor 169.254.10.26
+      bfd
+      remote-as 12076
+      description test
+      address-family ipv4 unicast
+        soft-reconfiguration inbound always
+  vrf LULU
+    address-family ipv4 unicast
+      network 1.1.1.0/24
+      network 1.1.1.1/32
+grpc gnmi max-concurrent-calls 16
+grpc gnmi subscription query-condition keep-data-timestamp
+grpc use-vrf default
+grpc certificate gnmicert
+grpc client root certificate my_client_trustpoint
+event manager applet Backup
+  action 1.0 syslog msg copy run to server
+  action 1.1 cli enable
+  action 2.0 cli copy runn tftp://10.1.1.19/sw-config
+event manager applet Eth1_55_down
+  event syslog pattern "Interface Ethernet1/55 is down"
+  action 1 cli python bootflash:NINCEBACKUP/ema00.py
+  action 2 syslog msg PORTA-ETH1_55_SHKOI_DOWN
+event manager applet LOOP0
+  description "EEM APPLET Exam Practice"
+  event syslog pattern "Interface Loopback0.* down"
+  action 1.0 cli command "enable"
+  action 2.0 cli command "config terminal"
+  action 3.0 cli command "interface loopback0"
+  action 4.0 cli command "shutdown"
+  action 5.0 cli command "no shutdown"
+  action 5.5 cli command "show interface loopback0"
+  action 6.0 syslog msg omo agbaya
+event manager applet myapp
+  event cli match "sh int lo300"
+  action 1 cli command " sh int lo1"
+monitor session 1 
+  source interface Ethernet1/52 both
+  destination interface Ethernet1/14
+  no shut
+monitor session 2 
+  source interface Ethernet1/52 both
+  destination interface Ethernet1/15
+  no shut
+monitor session 10 
+  source interface Ethernet1/50 both
+  source interface Ethernet1/51 both
+  destination interface port-channel20
+
+ip sla 1
+  icmp-echo 169.254.10.26 source-interface Ethernet1/11.11
+ip sla schedule 1 life forever start-time now
+ip sla 2
+  icmp-echo 172.17.250.45
+    vrf rsr_vn_sda
+    frequency 10
+ip sla schedule 2 life forever start-time now
+ip sla 3
+  icmp-echo 172.17.250.46
+    vrf rsr_vn_sda
+    frequency 10
+ip sla schedule 3 life forever start-time now
+ip sla 61
+  icmp-echo 10.0.0.5 source-ip 10.0.0.1
+    request-data-size 9122
+    vrf ipn
+    tag ipn
+    frequency 5
+ip sla schedule 61 life forever start-time now
+ip sla 123
+  icmp-echo 1.1.1.1
+    vrf chemi
+    frequency 10
+ip sla schedule 123 life forever start-time now
+logging server 1.1.1.1 use-vrf management
+logging server 10.10.20.175
+logging server 2.2.2.3 7 port 25199
+logging source-interface loopback0
+logging timestamp milliseconds
+no logging console
+
+
+scheduler job name Testing_Ansible
+  python bootflash:/test
+  
+end-job
+
+scheduler job name Job1min
+  python bootflash:/NINCEBACKUP/ema00.py
+  
+end-job
+
+scheduler schedule name SchedJob1min
+  job name Job1min
+  time start 2024:03:20:14:13 repeat 0:0:1
+
+telemetry
+  destination-group DST-GRP
+    ip address 10.10.20.51 port 57000 protocol gRPC encoding GPB 
+    use-vrf management
+  sensor-group test
+    data-source NX-API
+    path "show spanning-tree vlan 33 detail"
+  sensor-group SNSR-GRP
+    data-source YANG
+    path Cisco-NX-OS-device:System/procsys-items
+  sensor-group sensor-group-name
+  subscription 101
+    dst-grp DST-GRP
+    snsr-grp SNSR-GRP sample-interval 10000
+  subscription 102
+    dst-grp DST-GRP
+    snsr-grp SNSR-GRP sample-interval 10000
+
+Nuthish# show version

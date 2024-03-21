@@ -1,13 +1,6 @@
-# this is an official Python runtime, used as the parent image
-# FROM docker.io/briantilburgs/aci-sdk:5.1.3e
-FROM docker.io/briantilburgs/aci-sdk:5.2.8e-alpine2
+FROM python:3.7-slim
 
-#MAINTAINER Dawid Sandberg <dawidsandberg@gmail.com>
-
-# Install & upgrade PIP and Setuptools
-# prepared in image above
-# RUN python3 -m pip install --upgrade pip && \
-#    pip3 install setuptools
+MAINTAINER Dawid Sandberg <dawidsandberg@gmail.com>
 
 # set the working directory in the container to /app
 WORKDIR /app
@@ -16,7 +9,10 @@ WORKDIR /app
 COPY . /app/
 
 # execute everyone's favorite pip command, pip install -r
-# RUN pip3 install -r requirements.txt
+RUN pip3 install --upgrade setuptools pip
+RUN pip3 install --upgrade pip
+RUN pip install -r requirements.txt
 
-# execute the Flask app
-CMD ["python3", "run.py"]
+# execute the script 
+CMD ["python3", "./config_fetch_OOB2.py"]
+
